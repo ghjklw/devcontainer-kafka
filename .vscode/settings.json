@@ -1,0 +1,13 @@
+{
+    "files.exclude": {
+      "**/.cache": true,
+      "**/.venv": true,
+      "**/__pycache__": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.typeCheckingMode": "strict",
+    "python.defaultInterpreterPath": "./.venv/bin/python",
+    "python.languageServer": "Pylance",
+  }
+  

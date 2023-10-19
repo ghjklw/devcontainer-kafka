@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "devcontainer-kafka"
+version = "0.1.0"
+description = "Example Dev Container project for using Kafka with Python"
+homepage = "https://imdidev.visualstudio.com/Datavarehus/_git/Azure%20DVH%20ETL"
+repository = "https://imdidev.visualstudio.com/Datavarehus/_git/Azure%20DVH%20ETL"
+authors = ["Malo Jaffré <malo@jaffre.info>"]
+readme = "README.md"
+packages = [{include = "devcontainer_kafka", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+kafka-python = "^2.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+include = ["src"]
+typeCheckingMode = "strict"
+venvPath = "."
+venv = ".venv"
