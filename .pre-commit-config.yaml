@@ -1,0 +1,13 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: detect-private-key
+      - id: check-merge-conflict
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.327
+    hooks:
+      - id: pyright
+        entry: env PYRIGHT_PYTHON_FORCE_VERSION=latest pyright

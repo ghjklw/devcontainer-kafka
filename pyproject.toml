@@ -11,6 +11,14 @@ packages = [{include = "devcontainer_kafka", from = "src"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 kafka-python = "^2.0.2"
+pydantic = "^2.0.1"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.2.0"
+ipykernel = "^6.24.0"
 
 [build-system]
 requires = ["poetry-core"]

@@ -18,7 +18,7 @@ if [ ! -f ~/.initialized ]; then
 fi
 
 # Now install all dependencies
-poetry install --with dev,doc
+poetry install --with dev
 
 # Install pre-commit
 poetry run pre-commit install --install-hooks
