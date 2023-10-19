@@ -4,6 +4,8 @@
     "service": "devcontainer",
     "workspaceFolder": "/workspaces",
 
+    "forwardPorts": ["conduktor:8080"],
+
     // 👇 Use 'postCreateCommand' to run commands after the container is created.
     // 👇 Use 'postStartCommand' to run commands when the container is started.
     "postStartCommand": "bash ./.devcontainer/initialize.sh",

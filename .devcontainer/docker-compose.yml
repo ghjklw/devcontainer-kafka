@@ -3,19 +3,9 @@
 version: '3.8'
 services:
   devcontainer:
-    build: .
+    build: poetry-devcontainer
     hostname: devcontainer
     command: sleep infinity
-
-  postgres:
-    image: postgres:latest
-    restart: unless-stopped
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
 
   zoo:
     image: confluentinc/cp-zookeeper:7.3.2
@@ -32,11 +22,9 @@ services:
     hostname: kafka
     ports:
       - "9092:9092"
-      - "29092:29092"
-      - "9999:9999"
     environment:
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:19092,EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092,DOCKER://host.docker.internal:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,DOCKER:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_ZOOKEEPER_CONNECT: "zoo:2181"
       KAFKA_BROKER_ID: 1
@@ -76,9 +64,13 @@ services:
       CDK_DATABASE_URL: "postgresql://conduktor:some_password@pg-conduktor:5432/conduktor-platform"
       CDK_CLUSTERS_0_ID: "default"
       CDK_CLUSTERS_0_NAME: "Kafka Cluster"
-      CDK_CLUSTERS_0_BOOTSTRAPSERVERS: "PLAINTEXT://kafka:19092"
+      CDK_CLUSTERS_0_BOOTSTRAPSERVERS: "PLAINTEXT://kafka:9092"
+    depends_on:
+      - kafka
 
 volumes:
-  postgres-data:
   pg_conduktor_data:
   conduktor_data:
+
+networks:
+  default:
